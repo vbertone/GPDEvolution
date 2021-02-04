@@ -1,0 +1,354 @@
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[twoside,english]{paper}
+\usepackage{lmodern}
+\renewcommand{\ttdefault}{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{esint}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{breakurl}
+\usepackage{mathrsfs}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{babel}
+
+\@ifundefined{showcaptionsetup}{}{%
+ \PassOptionsToPackage{caption=false}{subfig}}
+\usepackage{subfig}
+\makeatother
+
+\begin{document}
+
+\section{Compton forms factor with evolution}
+
+The factorised expression for Compton form factors (CFF) takes the
+following form:
+\begin{equation}
+    \mathcal{H}(\xi, t, Q^2) = \int_{-1}^1
+    \frac{\mathrm{d}x}{\xi}\sum_{a= q,g} T^a\left(\frac{x}{\xi},
+      \frac{Q^2}{\mu^2},
+      \alpha_s(\mu^2)\right)H^a(x,\xi,t,\mu^2)\equiv \sum_{a= q,g}
+    T^a(Q,\mu)\otimes H^a(\mu)\,.
+    \label{eq:convol}
+\end{equation}
+For the sake of the argument, we assume that there is one single quark
+generation and that $H^{q}$ corresponds to the singlet
+combination(\footnote{In the presence of more quark generations, also
+  a non-singlet component has to be considered that, to $O(\alpha_s)$,
+  multiplies the same hard cross section $T^q$ as the singlet but
+  evolves multiplicatively through the evolution kernel
+  $K_{qq}$.}). This allows us write the CFF is a matricial form:
+\begin{equation}
+\mathcal{H}(Q) = (T^{q}(Q,\mu)\quad T^{g}(Q,\mu))\otimes {H^{q}(\mu) \choose
+  H^{g}(\mu)}\,.
+\label{eq:CFFvect}
+\end{equation}
+The hard cross sections $T^q$ and $T^g$ admit a perturbative expansion
+whose truncation at $\mathcal{O}(\alpha_s)$ reads:
+\begin{equation}
+  T^{q}(Q,\mu) = T_0^q + \alpha_s(\mu)\left(T_1^q+T_{\rm
+      coll}^q\log\frac{\mu^2}{Q^2}\right)\,\quad\mbox{and}\quad T^{g}(Q,\mu) = \alpha_s(\mu)\left(T_1^g+T_{\rm
+      coll}^g\log\frac{\mu^2}{Q^2}\right) \,.
+\end{equation}
+We know that the evolution of GPDs $H^{q}$ and $H^{g}$ is governed by
+the following RG equation:
+\begin{equation}
+\frac{d}{d\ln\mu^2} {H^{q}(\mu) \choose H^{g}(\mu)} = \begin{pmatrix}
+K_{qq}(\mu) & K_{qg}(\mu)\\
+K_{gq}(\mu) & K_{gg}(\mu)
+\end{pmatrix}\otimes {H^{q}(\mu) \choose H^{g}(\mu)}\,,
+\label{eq:eveq}
+\end{equation}
+where the evolution kernels $K_{ab}$ obey the perturbative expansion:
+\begin{equation}
+K_{ab}(\mu) = \alpha_s(\mu)\sum_{n=0}\alpha_s(\mu) K_{ab}^{(n)}\,.
+\end{equation}
+Assuming to know GPDs at some initial scale $\mu_0$, the solution to
+Eq.~(\ref{eq:eveq}) can be written as:
+\begin{equation}
+{H^{q}(\mu) \choose H^{g}(\mu)} = \begin{pmatrix}
+\Gamma_{qq}(\mu,\mu_0) & \Gamma_{qg}(\mu,\mu_0)\\
+\Gamma_{gq}(\mu,\mu_0) & \Gamma_{gg}(\mu,\mu_0)
+\end{pmatrix}\otimes {H^{q}(\mu_0) \choose H^{g}(\mu_0)}\,,
+\label{eq:solDGLAP}
+\end{equation}
+where we have defined the evolution operator as:
+\begin{equation}\label{eq:evolop}
+\begin{pmatrix}
+\Gamma_{qq}(\mu,\mu_0) & \Gamma_{qg}(\mu,\mu_0)\\
+\Gamma_{gq}(\mu,\mu_0) & \Gamma_{gg}(\mu,\mu_0)
+\end{pmatrix}
+= \exp\left[\int_{\mu_0}^{\mu} d\ln\mu'^2\begin{pmatrix}
+K_{qq}(\mu') & K_{qg}(\mu')\\
+K_{gq}(\mu') & K_{gg}(\mu')
+\end{pmatrix}\right]
+\end{equation}
+where the exponential function has to be interpreted as a path-ordered
+exponential. Given the exponential form of the evolution operator, it
+should clear that the following equality holds:
+\begin{equation}
+\begin{pmatrix}
+\Gamma_{qq}(\mu,\mu_0) & \Gamma_{qg}(\mu,\mu_0)\\
+\Gamma_{gq}(\mu,\mu_0) & \Gamma_{gg}(\mu,\mu_0)
+\end{pmatrix}
+= 
+\begin{pmatrix}
+\Gamma_{qq}(\mu,Q) & \Gamma_{qg}(\mu,Q)\\
+\Gamma_{gq}(\mu,Q) & \Gamma_{gg}(\mu,Q)
+\end{pmatrix}\otimes
+\begin{pmatrix}
+\Gamma_{qq}(Q,\mu_0) & \Gamma_{qg}(Q,\mu_0)\\
+\Gamma_{gq}(Q,\mu_0) & \Gamma_{gg}(Q,\mu_0)
+\end{pmatrix}\,.
+\label{eq:breaking}
+\end{equation}
+Now, if the scales $\mu$ and $Q$ are not too far apart, the first
+evolution operator in the r.h.s. of the equation above can be
+systematically expended in powers of $\alpha_s$. It is easy to see
+that to $\mathcal{O}(\alpha_s)$ the expansion is:
+\begin{equation}
+\begin{pmatrix}
+\Gamma_{qq}(\mu,Q) & \Gamma_{qg}(\mu,Q)\\
+\Gamma_{gq}(\mu,Q) & \Gamma_{gg}(\mu,Q)
+\end{pmatrix}
+= \begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}+\alpha_s(\mu)\begin{pmatrix}
+K_{qq}^{(0)} & K_{qg}^{(0)}\\
+K_{gq}^{(0)} & K_{gg}^{(0)}
+\end{pmatrix}\ln\frac{\mu^2}{Q^2}+\mathcal{O}(\alpha_s^2)\,.
+\label{eq:expop}
+\end{equation}
+We now replace the GPD vector at the final scale $\mu$ in
+Eq.~(\ref{eq:CFFvect}) with that at the initial scale $\mu_0$ using
+Eqs.~(\ref{eq:solDGLAP}), (\ref{eq:breaking}), and~(\ref{eq:expop}):
+\begin{equation}
+\mathcal{H}(Q) = (T^{q}(Q,\mu)\quad T^{g}(Q,\mu)) \otimes 
+\left[\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}+\alpha_s(\mu)\begin{pmatrix}
+K_{qq}^{(0)} & K_{qg}^{(0)}\\
+K_{gq}^{(0)} & K_{gg}^{(0)}
+\end{pmatrix}\ln\frac{\mu^2}{Q^2}\right]\otimes
+\begin{pmatrix}
+\Gamma_{qq}(Q,\mu_0) & \Gamma_{qg}(Q,\mu_0)\\
+\Gamma_{gq}(Q,\mu_0) & \Gamma_{gg}(Q,\mu_0)
+\end{pmatrix}
+\otimes {H^{q}(\mu_0) \choose H^{g}(\mu_0)}\,.
+\end{equation}
+The first two terms in the r.h.s. of the equation above can be
+combined and only terms up to $\mathcal{O}(\alpha_s)$ retained:
+\begin{equation}
+\begin{array}{c}
+\displaystyle \left\{(T^{q}(Q,\mu)\quad T^{g}(Q,\mu)) \otimes 
+\left[\begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}+\alpha_s(\mu)\begin{pmatrix}
+K_{qq}^{(0)} & K_{qg}^{(0)}\\
+K_{gq}^{(0)} & K_{gg}^{(0)}
+\end{pmatrix}\ln\frac{\mu^2}{Q^2}\right]\right\}^T\\
+\\
+=\displaystyle {T_0^{q}\choose T_0^{g}} + \alpha_s\left[{T_1^{q}\choose
+  T_1^{g}}+{T_{\rm coll}^{q}+T_0^{q}\otimes
+  K_{qq}^{(0)}\choose T_{\rm coll}^{g}+T_0^{q}\otimes K_{qg}^{(0)} }\ln\frac{\mu^2}{Q^2}\right]+\mathcal{O}(\alpha_s^2)\,.
+\end{array}
+\end{equation}
+In order for the CFF $\mathcal{H}$ to be independent from the
+normalisation scale $\mu$ up to $\mathcal{O}(\alpha_s)$, we need to
+require:
+\begin{equation}
+\begin{array}{rcl}
+T_{\rm coll}^{q}&=&-T_0^{q}\otimes K_{qq}^{(0)}\\
+\\
+T_{\rm coll}^{g}&=&-T_0^{q}\otimes K_{qg}^{(0)}
+\end{array}\,.
+\end{equation}
+Finally one has:
+\begin{equation}
+  T^{q}(Q,\mu) = T_0^q + \alpha_s(\mu)\left(T_1^q -T_0^{q}\otimes K_{qq}^{(0)}\log\frac{\mu^2}{Q^2}\right)\,\quad\mbox{and}\quad T^{g}(Q,\mu) = \alpha_s(\mu)\left(T_1^g -T_0^{q}\otimes K_{qg}^{(0)}\log\frac{\mu^2}{Q^2}\right)\,,
+\end{equation}
+so that:
+\begin{equation}
+\mathcal{H}(Q) = \left[(T_0^{q}\quad 0) +\alpha_s(Q)(T_1^{q}\quad T_0^{g})\right]\otimes 
+\begin{pmatrix}
+\Gamma_{qq}(Q,\mu_0) & \Gamma_{qg}(Q,\mu_0)\\
+\Gamma_{gq}(Q,\mu_0) & \Gamma_{gg}(Q,\mu_0)
+\end{pmatrix}
+\otimes {H^{q}(\mu_0) \choose H^{g}(\mu_0)}\,.
+\end{equation}
+Now, let us also assume that $\mu_0$ and $Q$ are not too far
+apart. This allows us to expand the evolution operator between $\mu_0$
+and $Q$ as above:
+\begin{equation}
+\begin{pmatrix}
+\Gamma_{qq}(\mu,Q) & \Gamma_{qg}(\mu,Q)\\
+\Gamma_{gq}(\mu,Q) & \Gamma_{gg}(\mu,Q)
+\end{pmatrix}
+= \begin{pmatrix}
+1 & 0\\
+0 & 1
+\end{pmatrix}+\alpha_s(Q)\begin{pmatrix}
+K_{qq}^{(0)} & K_{qg}^{(0)}\\
+K_{gq}^{(0)} & K_{gg}^{(0)}
+\end{pmatrix}\ln\frac{Q^2}{\mu_0^2}+\mathcal{O}(\alpha_s^2)\,.
+\end{equation}
+Let us also assume that $H^g(\mu_0)=0$. This finally leads to:
+\begin{equation}
+\begin{array}{rcl}
+\mathcal{H}(Q) &=& \displaystyle T_0^{q}\otimes
+H^{q}(\mu_0)+\alpha_s(Q)\left[ T_1^{q}\otimes H^{q}(\mu_0) +
+                   T_0^{q}\otimes K_{qq}^{(0)}\otimes H^{q}(\mu_0)
+                   \ln\frac{Q^2}{\mu_0^2}\right]+\mathcal{O}(\alpha_s^2)\\
+\\
+&=&\displaystyle T_0^{q}\otimes
+H^{q}(\mu_0)+\alpha_s(Q)\left[ T_1^{q}\otimes H^{q}(\mu_0) -
+                   T_{\rm coll}^{q}\otimes H^{q}(\mu_0)
+                   \ln\frac{Q^2}{\mu_0^2}\right]+\mathcal{O}(\alpha_s^2)\,.
+\end{array}
+\end{equation}
+In conclusion, up to $\mathcal{O}(\alpha_s)$, assuming that the gluon
+GPD is identically zero at the initial scale $\mu_0$, and for scales
+$Q$ not too far from $\mu_0$, a shadow GDP needs to simultaneously
+fulfil the following equalities:
+\begin{equation}
+\begin{array}{rcl}
+T_0^{q}\otimes H^{q}(\mu_0) &=& 0\,\\
+\\
+T_1^{q}\otimes H^{q}(\mu_0) &=& 0\,\\
+\\
+T_{\rm coll}^{q}\otimes H^{q}(\mu_0) &=& - T_0^{q}\otimes
+                                         K_{qq}^{(0)}\otimes
+                                         H^{q}(\mu_0) = 0\,.
+\end{array}
+\end{equation}
+Conjecture: in order to fulfil the last equalities, it would be enough
+to require:
+\begin{equation}
+  K_{qq}^{(0)}\otimes H^{q}(\mu_0) = 0\,.
+\end{equation}
+If this equality holds, I believe that $H^{q}(\mu_0)$ is unaffected by
+the evolution, not only at $\mathcal{O}(\alpha_s)$, but to all
+orders. This would allow us to relax the restriction $Q\simeq
+\mu_0$. This can be checked numerically.
+
+\subsection{Scale variations}
+
+The computation of a CFF in terms of coefficient functions, evolution
+operator, and initial-scale GPDs can be schematically written as:
+\begin{equation}\label{eq:convolutionsketch}
+\mathcal{H}(Q,\mu,\mu_0) = \mathbf{T}^T(Q,\mu)\otimes {\bm
+  \Gamma}(\mu,\mu_0)\otimes \mathbf{H}(\mu_0)
+\end{equation}
+where all convolution products also imply a matrix product, with the
+$\mathbf{T}$ and $\mathbf{H}$ being the column vectors of coefficient
+functions and GPDs, and ${\bm \Gamma}$ the evolution matrix. All the
+irrelevant arguments are dropped. $\mathbf{H}(\mu_0)$ are the input
+GPDs at some \textit{fixed} initial scale $\mu_0$. The evolution
+operator ${\bm \Gamma}(\mu,\mu_0)$, given in Eq.~(\ref{eq:evolop}),
+has the role of resumming terms of the kind
+$\alpha_s^m(\mu)\ln^n(\mu/\mu_0)$ to all orders, with $m = n$ being
+the leading-logarithm (LL) accuracy, $m=n-1$ next-to-leading logarithm
+(NLL), and so on. Finally, the coefficient functions
+$\mathbf{T}(Q,\mu)$ can be regarded as a perturbative expansion in
+powers of $\alpha_s(\mu)$ whose truncation determines the fixed-order
+perturbative accuracy. For the specific case of a CFF, truncation at
+$\mathcal{O}(1)$ is said leading-order (LO) approximation, truncation
+at $\mathcal{O}(\alpha_s)$ next-to-leading order (NLO), and so on.
+Generalising the discussion above, the coefficient of the contribution
+to $\mathbf{T}(Q,\mu)$ proportional to $\alpha_s^n(\mu)$,
+$\mathbf{T}_n$, has the following general structure:
+\begin{equation}
+\mathbf{T}_n(\mu,Q) = \sum_{k=0}^{n}\mathbf{T}_n^{(k)}\ln^k\left(\frac{\mu}{Q}\right)\,.
+\end{equation}
+While the term $\mathbf{T}_n^{(0)}$ requires the calculation on the
+$n$-loop diagrams, all other coefficients $\mathbf{T}_n^{(k)}$, with
+$k\geq 1$, are combinations of $\mathbf{T}_m^{(0)}$, with $m<n$, and
+the perturbative coefficient of the evolution kernels
+$\mathbf{K}^{(l)}$, with $l<n$.(\footnote{In principle, also the
+  coefficients of the $\beta$-function are present, but since in the
+  following we are interested to NLO accuracy where these coefficients
+  are not present yet, we will not need to discuss them.}) This is a
+direct consequence of the fact that the coefficients
+$\mathbf{T}_n^{(k)}$, with $k\geq 1$, are specifically engineered to
+compensate the effect of the evolution beween $\mu$ and $Q$ up to
+order $n$ inclusive. The compensation is such that, if the coefficient
+functions $\mathbf{T}_n$ are computed to N$^{n}$LO and the evolution
+to N$^{m}$LL with $m\geq n-1$, variations of $\mu$ in
+Eq.~(\ref{eq:convolutionsketch}) will generate terms whose size is at
+worst of order $\mathcal{O}(\alpha_s^{n+1}(\mu)\ln^{n+1}(\mu/Q))$. If
+we require $\mu\simeq Q$, such that $\ln(\mu/Q)\simeq 1$, the
+logarithms will no longer inflate the terms thus generated leaving us
+with $\mathcal{O}(\alpha_s^{n+1})$. An operational way of writing this
+statement is the following: given two different factorisation scales
+$\mu$ and $\nu$, both in the vicinity of $Q$, the following relation
+holds:
+\begin{equation}\label{eq:convolutionsketchdiff}
+\mathcal{H}(Q,\mu,\mu_0) - \mathcal{H}(Q,\nu,\mu_0) = C\times \alpha_s^{n+1}(\mu)\,.
+\end{equation}
+where $\mathcal{H}$ is computed at N$^{n}$LO with N$^{n-1}$LL (or more
+accurate) evolution, and $C$ is a constant of order one approximately
+proportional to $\ln^{n+1}(\mu/\nu)$. Notice that the argument in the
+r.h.s. of the equation above is set to $\mu$. In fact, this is
+arbitrary. One could have chosen any scale of order $Q$ in that this
+would give rise to subleading differences in $\alpha_s$. A possible
+choice that eliminates one of the scales is of course $\nu = Q$.
+
+Now the question is: how does one probe numerically that
+Eq.~(\ref{eq:convolutionsketchdiff}) is effectively true? My
+suggestion is the following: let us fix the scales $\mu_0$, $Q$ and
+$\mu$. For example $\mu_0=1$~GeV, $Q=30$~GeV,
+$\mu=60$~GeV.(\footnote{Despite $\mu_0$, $Q$ and $\mu_0$ are linearly
+  equally spaced, their ratios, $\mu/\mu_0=60$ and $\mu/Q=2$, are such
+  that the interval $[\mu_0,\mu]$ requires resummation while $[Q,\mu]$
+  does not.}). Since $\mu\simeq M_Z$, \textit{i.e.} $\ln(\mu/M_Z)\simeq 1$,
+one can write:
+\begin{equation}\label{eq:implem}
+\mathcal{H}(Q,\mu,\mu_0) - \mathcal{H}(Q,Q,\mu_0) = C'\times \alpha_s^{n+1}(M_Z)\,.
+\end{equation}
+The reason for choosing $M_Z$ as a reference scale is that often the
+evolution of $\alpha_s$ is computed using the value of $\alpha_s(M_Z)$
+as a boundary condition (the specific value is typically around
+$\alpha_s(M_Z)= 0.118$). A way of testing Eq.~(\ref{eq:implem}) is to
+numerically compute the r.h.s. changing the value of $\alpha_s(M_Z)$
+used as a reference for the evolution of the coupling in a reasonable
+range (\textit{e.g.} $\alpha_s(M_Z)\in [0.05, 0.2]$) and to check that
+it scales like $\alpha_s^{n+1}(M_Z)$. The same exercise can be
+repeated picking different values of $Q$ and $\mu$. By doing so, one
+should observe that the value of the coefficient $C'$ extracted with
+different pairs $(Q,\mu)$ scales like $\ln^{n+1}(\mu/Q)$.
+
+Of course, it is not necessary to use $\alpha_s(M_Z)$ as a scaling
+parameter. One can use $\alpha_s(\mu)$ as prescribed by
+Eq.~(\ref{eq:convolutionsketchdiff}) and this value changed by moving
+the position of the Landau pole.
+
+
+
+\end{document}
