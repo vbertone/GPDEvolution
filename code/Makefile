@@ -10,14 +10,18 @@ LHAPDFLIBS = $(shell lhapdf-config --ldflags)
 APFELPPINCS = $(shell apfelxx-config --cppflags)
 APFELPPLIBS = $(shell apfelxx-config --ldflags)
 
-# Now set up the compiler and link flags and libs
-CXXFLAGS += $(LHAPDFINCS) $(APFELPPINCS)
-LDFLAGS  += $(LHAPDFINCS) $(APFELPPINCS)
+# Boost
+BOOSTINCS = -I/usr/local/include/
+BOOSTLIBS = -L/usr/local/include/ -lboost_system
 
-CLIBS += $(LHAPDFLIBS) $(APFELPPLIBS)
+# Now set up the compiler and link flags and libs
+CXXFLAGS += $(LHAPDFINCS) $(APFELPPINCS) $(BOOSTINCS)
+LDFLAGS  += $(LHAPDFINCS) $(APFELPPINCS) $(BOOSTINCS)
+
+CLIBS += $(LHAPDFLIBS) $(APFELPPLIBS) $(BOOSTLIBS)
 
 install : all
-all : Convolutions GPDEvolution GPDEvolutionGhost
+all : Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionTest
 
 Convolutions: Convolutions.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
@@ -28,6 +32,8 @@ GPDEvolution: GPDEvolution.o
 GPDEvolutionGhost: GPDEvolutionGhost.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
+GPDEvolutionTest: GPDEvolutionTest.o 
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 .SUFFIXES : .cc .o .f .c
 
 .cxx.o:	 
@@ -37,4 +43,4 @@ GPDEvolutionGhost: GPDEvolutionGhost.o
 	$(F77)  -c $< 
 
 clean:
-	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionGhost *~
+	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionTest *~
