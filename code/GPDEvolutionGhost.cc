@@ -2,6 +2,7 @@
 #include <apfel/apfelxx.h>
 
 double GhostUp(double const& m_x, double const& m_xi);
+double GhostLO(double const& m_x, double const& m_xi);
 
 int main()
 {
@@ -26,7 +27,8 @@ int main()
   const apfel::Grid g{{apfel::SubGrid{100, 1e-7, 3}, apfel::SubGrid{200, 0.9e-1, 3}, apfel::SubGrid{100, 9e-1, 3}}};
 
   // Construct the GPD evolution objects and tabulate GPDs
-  const std::vector<double> xiv{0.1};
+  //const std::vector<double> xiv{0.1};
+  const std::vector<double> xiv{0, 0.02, 0.05, 0.11, 0.2, 0.35, 0.5, 0.7, 0.9, 1};
   std::vector<apfel::TabulateObject<apfel::Set<apfel::Distribution>>> TabulatedGPDs;
   for(double const& xi : xiv)
     {
@@ -34,11 +36,11 @@ int main()
       const auto InPDFs = [&] (double const& x, double const&) -> std::map<int, double>
 	{
 	  // Call all functions only once.
-	  const double upv  = GhostUp(x, xi);
+	  const double upv  = 0;
 	  const double dnv  = 0;
 	  const double glu  = 0;
 	  const double dbar = 0;
-	  const double ubar = 0;
+	  const double ubar = x * GhostUp(x, xi);
 	  const double sbar = 0;
 
 	  // Construct QCD evolution basis conbinations.
@@ -71,7 +73,7 @@ int main()
     }
 
   // Print results
-  const int nx = 10000;
+  const int nx = 100;
   const double xmin = 1e-3;
   const double xmax = 0.99;
   const double xstp = ( xmax - xmin ) / ( nx - 1 );
@@ -81,11 +83,30 @@ int main()
       for (auto const& tgpd : TabulatedGPDs)
 	{
 	  const std::map<int, double> DistMapGPDs = apfel::QCDEvToPhys(tgpd.EvaluateMapxQ(x, mu));
-	  std::cout << DistMapGPDs.at(2) << "\t";
+	  std::cout << DistMapGPDs.at(0) << "\t";
 	}
       std::cout << std::endl;
     }
   std::cout << "========\n";
+
+  // Check polynomiality
+  std::vector<std::map<int, apfel::Distribution>> DistGPDs;
+  for (auto const& tgpd : TabulatedGPDs)
+    DistGPDs.push_back(apfel::QCDEvToPhys(tgpd.Evaluate(mu).GetObjects()));
+
+  for (int i = 0; i < (int) xiv.size(); i++)
+    std::cout << "Up-valence 1st moment (xi = " << xiv[i] << ")   : "
+	      << ( [] (double const& x) -> double { return 1 / x; } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
+  std::cout << "\n";
+  for (int i = 0; i < (int) xiv.size(); i++)
+    std::cout << "Up-valence 2st moment (xi = " << xiv[i] << ")   : "
+	      << ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) + DistGPDs[i].at(-2) ).Integrate(1e-7, 1)<< std::endl;
+  std::cout << "\n";
+  for (int i = 0; i < (int) xiv.size(); i++)
+    std::cout << "Up-valence 3rd moment (xi = " << xiv[i] << ")   : "
+	      << ( [] (double const& x) -> double { return x; } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
+  std::cout << "\n";
+
 
   return 0;
 }
@@ -106,3 +127,18 @@ double GhostUp(double const& m_x, double const& m_xi)
   return trans;
 }
 
+double GhostLO(double const& m_x, double const& m_xi)
+{
+  double trans = 0.;
+  if (fabs(m_xi) >= 1. || fabs(m_x) >= 1.)
+    trans = 0.;
+  else if(fabs(m_x) >= fabs(m_xi))
+    trans = - 1024. * pow(1 - m_x, 3) * (pow(m_x, 2) - pow(m_xi, 2)) * pow(m_xi, 2) * (3. * m_x - 12. * pow(m_x, 2) + 4. * pow(m_x, 3) + 9. * pow(m_x, 4) + 3. * pow(m_x, 5) - 7. * pow(m_xi, 2) + 42. * m_x * pow(m_xi, 2) - 42. * pow(m_x, 2) * pow(m_xi, 2) - 14. * pow(m_x, 3) * pow(m_xi, 2) - 21. * pow(m_xi, 4) + 42. * m_x * pow(m_xi, 4) - 7. * pow(m_xi, 6)) / 7. / pow(1 - pow(m_xi, 2), 7);
+  else
+    trans = 1024. * m_x * m_xi * (pow(m_x, 2) - pow(m_xi, 2)) * (7. * pow(m_x, 2) - 3. * m_xi) / 7. / pow(1 + m_xi, 7);
+
+  if (m_x < -fabs(m_xi))
+    trans = -trans;
+
+  return trans;
+}

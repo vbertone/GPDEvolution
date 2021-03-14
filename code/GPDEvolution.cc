@@ -66,7 +66,7 @@ int main()
   std::cout << "\n";
 
   // Check polynomiality
-  const std::map<int, apfel::Distribution> DistPDFs  = apfel::QCDEvToPhys(TabulatedPDFs.Evaluate(mu).GetObjects());
+  const std::map<int, apfel::Distribution> DistPDFs = apfel::QCDEvToPhys(TabulatedPDFs.Evaluate(mu).GetObjects());
  
   std::vector<std::map<int, apfel::Distribution>> DistGPDs;
   for (auto const& tgpd : TabulatedGPDs)
