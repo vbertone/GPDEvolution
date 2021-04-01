@@ -28,7 +28,7 @@ int main()
 
   // Construct the GPD evolution objects and tabulate GPDs
   //const std::vector<double> xiv{0.1};
-  const std::vector<double> xiv{0, 0.02, 0.05, 0.11, 0.2, 0.35, 0.5, 0.7, 0.9, 1};
+  const std::vector<double> xiv{0, 0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.9999};
   std::vector<apfel::TabulateObject<apfel::Set<apfel::Distribution>>> TabulatedGPDs;
   for(double const& xi : xiv)
     {
@@ -83,7 +83,7 @@ int main()
       for (auto const& tgpd : TabulatedGPDs)
 	{
 	  const std::map<int, double> DistMapGPDs = apfel::QCDEvToPhys(tgpd.EvaluateMapxQ(x, mu));
-	  std::cout << DistMapGPDs.at(0) << "\t";
+	  std::cout << DistMapGPDs.at(2) << "\t";
 	}
       std::cout << std::endl;
     }

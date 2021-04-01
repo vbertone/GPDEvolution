@@ -1,0 +1,160 @@
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[twoside,english]{paper}
+\usepackage{lmodern}
+\renewcommand{\ttdefault}{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=2.5cm,lmargin=2cm,rmargin=2cm}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{esint}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{breakurl}
+\usepackage{mathrsfs}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{babel}
+
+\@ifundefined{showcaptionsetup}{}{%
+ \PassOptionsToPackage{caption=false}{subfig}}
+\usepackage{subfig}
+\makeatother
+
+\begin{document}
+
+\section{Numerical computation of the imaginary part of a Compton form factor}
+
+The basic integral to be computed when evaluating a Compton form
+factor has the following structure:
+\begin{equation}
+\mathcal{H}(\xi) = \int_{-1}^{1}dx\left[C(x,\xi)-C(-x,\xi)\right]H(x)\,.
+\end{equation}
+Defining $H^{(+)}(x)= H(x)-H(-x)$\footnote{Using Ji's convention, the
+  function $H$ can be either a quark or a gluon distribution.}, it is
+easy to see that:
+\begin{equation}
+\mathcal{H}(\xi) = \int_{0}^{1}dx\left[C(x,\xi)-C(-x,\xi)\right]H^{(+)}(x)\,.
+\end{equation}
+This step is of fundamental importance because restricts the
+integration to positive values of $x$ allowing, as we will see below,
+for important simplifications. In addition it tuns out that the
+coefficient function $C$ enjoys the following property:
+\begin{equation}\label{eq:simpl}
+C(x,\xi) = \frac{1}{x}\widetilde{C}\left(\frac{\xi}{x}\right)\,.
+\end{equation}
+This equality is actually strictly true only if one neglects the
+$i\varepsilon$ prescription required to regularise the propagator
+poles. However, depending on the sign of $x$, one can always reinstate
+the $i\varepsilon$ prescription taking care of matching the sign of
+$i\varepsilon$ with the sign of $x$. This identity allows one to
+write:
+\begin{equation}
+\mathcal{H}(\xi) = \int_{0}^{1}\frac{dx}{x}\left[\widetilde{C}\left(\frac{\xi}{x}\right)+\widetilde{C}\left(-\frac{\xi}{x}\right)\right]H^{(+)}(x)\,,
+\end{equation}
+that with a simple change of variable becomes:
+\begin{equation}\label{eq:strucfunc}
+\mathcal{H}(\xi) = \int_{\xi}^{\infty}\frac{dy}{y}\left[\widetilde{C}\left(y\right)+\widetilde{C}\left(-y\right)\right]H^{(+)}\left(\frac{\xi}{y}\right)\,.
+\end{equation}
+Now, if:
+\begin{equation}
+C(x,\xi) = \frac{1}{x+\xi-i\varepsilon}\left(-3-2\ln\left(\frac{x+\xi}{2\xi}-i\varepsilon\right)\right)\,,
+\end{equation}
+using Eq.~(\ref{eq:simpl}) it is easy to see that:
+\begin{equation}
+\widetilde{C}(y) = \frac{1}{1+y-i\varepsilon}\left(-3-2\ln\left(\frac{1+y}{2y}-i\varepsilon \right)\right)\,,
+\end{equation}
+and:
+\begin{equation}
+\widetilde{C}(-y) = \frac{1}{1-y+i\varepsilon}\left(-3-2\ln\left(-\frac{1-y}{2y}+i\varepsilon \right)\right)\,.
+\end{equation}
+Notice that in $C(-y)$ we have swapped the sign of both $y$ and
+$i\varepsilon$ as appropriate due to the definition of $\widetilde{C}$
+in Eq.~(\ref{eq:simpl}). Since the integral in
+Eq.~(\ref{eq:strucfunc}) runs over positive values of $y$,
+$i\varepsilon$ inside $C(y)$ can be dropped because $C(y)$ has no pole
+over the integration range. As a direct consequence $C(y)$ becomes a
+real function. Since we are interested in computing the imaginary part
+of $\mathcal{H}$, owing to the fact that $H$ is also a real function,
+one finds that:
+\begin{equation}
+\mbox{Im}\left[\mathcal{H}(\xi)\right] = \int_{\xi}^{\infty}\frac{dy}{y}\mbox{Im}\left[\widetilde{C}\left(-y\right)\right]H^{(+)}\left(\frac{\xi}{y}\right)\,.
+\end{equation}
+Now we use the well-know relation:
+\begin{equation}
+\frac{1}{1-y+i\varepsilon}=\mbox{P.V.}\frac{1}{1-y}-i\pi\delta(1-y)\,,
+\end{equation}
+and the slightly more subtle equality:
+\begin{equation}
+\ln\left(-\frac{1-y}{2y}+i\varepsilon \right) = \ln\left(\left|\frac{1-y}{2y}\right|\right)-i\pi\theta(1-y)\,.
+\end{equation}
+The presence of the $\theta$-function in front of $i\pi$ is
+consequence of the fact that that term only arises if the argument of
+the logarithm is negative that only happens if $y<1$. This allows one
+to write:
+\begin{equation}
+\mbox{Im}\left[\widetilde{C}(-y)\right] =2\pi \left[\frac{\theta(1-y)}{1-y}+\delta(1-y)\left(\frac{3}{2}+\ln\left(1-y\right)-\ln(2)\right) \right]\,.
+\end{equation}
+Notice that we already set $\delta(1-y)\ln y = 0$ and that, due to the
+presence of the $\theta$-function, we dropped the principal
+value. Despite the $\theta$-function exposes the singularity of
+$1/(1-y)$, this is exactly what is needed to cancel the singularity
+generated by $\delta(1-y)\ln(1-y)$. To see this write:
+\begin{equation}
+\delta(1-y) \ln\left(1-y\right) = -\delta(1-y)\int_0^1\frac{dz}{1-z}\,,
+\end{equation}
+and using the definition of $+$-prescription:
+\begin{equation}
+\left(\frac{1}{1-y}\right)_+ = \frac{1}{1-y}-\delta(1-y) \int_0^1\frac{dz}{1-z}\,,
+\end{equation}
+we finally have:
+\begin{equation}
+\mbox{Im}\left[\widetilde{C}(-y)\right] =2\pi \left[\theta(1-y) \left(\frac{1}{1-y}\right)_++\delta(1-y)\left(\frac{3}{2}-\ln(2)\right) \right]\,.
+\end{equation}
+that plugged into Eq.~(\ref{eq:strucfunc}) gives:
+\begin{equation}
+\begin{array}{rcl}
+\displaystyle\frac{1}{2\pi}\mbox{Im}\left[\mathcal{H}(\xi)\right] &=&\displaystyle  \int_{\xi}^1\frac{dy}{y}
+  \left[\left(\frac{1}{1-y}\right)_++\delta(1-y)\left(\frac{3}{2}-\ln(2)\right)
+  \right]H^{(+)}\left(\frac{\xi}{y}\right)\\
+\\
+&=&\displaystyle  \int_{\xi}^1
+  \frac{dy}{1-y}\left[\frac1yH^{(+)}\left(\frac{\xi}{y}\right)-H^{(+)}\left(\xi\right)\right]+\left(\frac{3}{2}-\ln(2)+\ln(1-\xi)\right) H^{(+)}\left(\xi\right)\,.
+\end{array}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

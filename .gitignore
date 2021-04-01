@@ -34,3 +34,7 @@ code/Convolutions
 code/GPDEvolution
 code/GPDEvolutionGhost
 code/GPDEvolutionTest
+code/GPDEvolutionDer
+code/GPDEvolutionPion
+*.aux
+*.log
