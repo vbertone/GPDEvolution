@@ -55,11 +55,15 @@ int main()
   for (double x = xmin; x <= xmax; x *= xstp)
     {
       const std::map<int, double> DistMapPDFs = apfel::QCDEvToPhys(TabulatedPDFs.EvaluateMapxQ(x, mu));
-      std::cout << std::scientific << x << "\t" << DistMapPDFs.at(2) - DistMapPDFs.at(-2) << "\t";
+      //std::cout << std::scientific << x << "\t" << DistMapPDFs.at(2) - DistMapPDFs.at(-2) << "\t";
+      std::cout << std::scientific << x << "\t" << DistMapPDFs.at(2) + DistMapPDFs.at(-2) << "\t";
+      //std::cout << std::scientific << x << "\t" << DistMapPDFs.at(0) << "\t";
       for (auto const& tgpd : TabulatedGPDs)
 	{
 	  const std::map<int, double> DistMapGPDs = apfel::QCDEvToPhys(tgpd.EvaluateMapxQ(x, mu));
-	  std::cout << DistMapGPDs.at(2) - DistMapGPDs.at(-2) << "\t";
+	  //std::cout << DistMapGPDs.at(2) - DistMapGPDs.at(-2) << "\t";
+	  std::cout << DistMapGPDs.at(2) + DistMapGPDs.at(-2) << "\t";
+	  //std::cout << DistMapGPDs.at(0) << "\t";
 	}
       std::cout << std::endl;
     }
@@ -82,11 +86,15 @@ int main()
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
     std::cout << "Up-valence 2st moment (xi = " << xiv[i] << ")   : "
-	      << ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ).Integrate(1e-7, 1)<< std::endl;
+	      << ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
     std::cout << "Up-valence 3rd moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return x; } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
+  std::cout << "\n";
+  for (int i = 0; i < (int) xiv.size(); i++)
+    std::cout << "Up-valence 4th moment (xi = " << xiv[i] << ")   : "
+	      << ( [] (double const& x) -> double { return x * x; } * ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
 
   return 0;

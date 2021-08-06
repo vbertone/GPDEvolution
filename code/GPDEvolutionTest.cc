@@ -14,7 +14,7 @@ double InputUp(double const& x, int const& n)
 int main()
 {
   // Final scale
-  const double mu = sqrt(10);
+  const double mu = 99.99;
 
   // Retrieve evolution parameters
   const int    pto   = 0;
@@ -90,21 +90,21 @@ int main()
     TabulatedGPDs.push_back(apfel::TabulateObject<apfel::Set<apfel::Distribution>> {*(BuildDglap(InitializeGpdObjects(g, Thresholds, xi), InPDFs, mu0, pto, as)), 30, 1, 100, 3});
 
   // Print results
-  const int nx = 100;
+  const int nx = 10000;
   const double xmin = 1e-3;
   const double xmax = 0.99;
   const double xstp = ( xmax - xmin ) / ( nx - 1 );
   for (double x = xmin; x <= xmax; x += xstp)
     {
       std::cout << std::scientific << x << "\t";
-      const std::map<int, double> DistMapPDFs = apfel::QCDEvToPhys(TabulatedPDFs.EvaluateMapxQ(x, mu));
-      std::cout << DistMapPDFs.at(2) << "\t";
+      //const std::map<int, double> DistMapPDFs = apfel::QCDEvToPhys(TabulatedPDFs.EvaluateMapxQ(x, mu));
+      //std::cout << DistMapPDFs.at(2) << "\t";
       for (auto const& tgpd : TabulatedGPDs)
 	{
 	  const std::map<int, double> DistMapGPDs = apfel::QCDEvToPhys(tgpd.EvaluateMapxQ(x, mu));
-	  std::cout << ( DistMapGPDs.at(2) - DistMapGPDs.at(-2) ) / ( x * InputUp(x, n) ) << "\t";
+	  std::cout << ( DistMapGPDs.at(2) - DistMapGPDs.at(-2) ) << "\t";
 	}
-      std::cout << GammaERBL << "\t";
+      std::cout << GammaERBL * x * InputUp(x, n) << "\t";
       std::cout << std::endl;
     }
   std::cout << "========\n";
