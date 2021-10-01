@@ -58,6 +58,7 @@ int main()
       //std::cout << std::scientific << x << "\t" << DistMapPDFs.at(2) - DistMapPDFs.at(-2) << "\t";
       std::cout << std::scientific << x << "\t" << DistMapPDFs.at(2) + DistMapPDFs.at(-2) << "\t";
       //std::cout << std::scientific << x << "\t" << DistMapPDFs.at(0) << "\t";
+      //std::cout << std::scientific << dist->xfxQ(2, x, mu) + dist->xfxQ(-2, x, mu) << "\t";
       for (auto const& tgpd : TabulatedGPDs)
 	{
 	  const std::map<int, double> DistMapGPDs = apfel::QCDEvToPhys(tgpd.EvaluateMapxQ(x, mu));

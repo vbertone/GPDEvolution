@@ -26,16 +26,15 @@ namespace PARTONS {
     m_thresholds.push_back(pow(2.2 / 1.E3, 2)); //u
     m_thresholds.push_back(pow(4.7 / 1.E3, 2)); //d
     m_thresholds.push_back(pow(96. / 1.E3, 2)); //s
-    m_thresholds.push_back(pow(1.28, 2));       //c
-    m_thresholds.push_back(pow(4.18, 2));       //b
-    m_thresholds.push_back(pow(173.1, 2));      //t
+    m_thresholds.push_back(pow(1.4, 2));        //c
+    m_thresholds.push_back(pow(4.75, 2));       //b
+    m_thresholds.push_back(pow(175, 2));        //t
     m_thresholds.push_back(std::numeric_limits<double>::max()); //inf
   }
 
   Evolution::Evolution(const Evolution& other) :
     BaseObject(other)
   {
-
     //thresholds
     m_thresholds = other.m_thresholds;
   }
@@ -76,8 +75,10 @@ namespace PARTONS {
   }
 
   void Evolution::evolve2(std::vector<std::vector<double>>& gMell,
-			  std::map<PARTONS::QuarkFlavor::Type, std::vector<std::vector<double>>>& qMell,
-			  double muF20, double muF2) const
+			  std::map<PARTONS::QuarkFlavor::Type,
+			  std::vector<std::vector<double>>>& qMell,
+			  double muF20,
+			  double muF2) const
   {
     //number of flavors
     size_t nf = qMell.size();
@@ -335,8 +336,7 @@ namespace PARTONS {
     return 0;
   }
 
-  void Evolution::checkInputVectors(
-				    const std::vector<std::vector<double> >& v) const {
+  void Evolution::checkInputVectors(const std::vector<std::vector<double> >& v) const {
 
     //iterator
     std::vector<std::vector<double> >::const_iterator it;

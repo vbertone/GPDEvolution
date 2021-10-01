@@ -8,9 +8,9 @@ data = np.loadtxt("ERBLEvolution.dat")
 f, (ax1, ax2) = plt.subplots(2, 1, sharex = "all", gridspec_kw = dict(width_ratios = [1], height_ratios = [3, 1]))
 plt.subplots_adjust(wspace = 0, hspace = 0)
 
-ax1.set_title(r"\textbf{LO ERBL evolution ($\xi=1$) from $\mu_0=1$ GeV for $C_4^{(3/2)}(x)$}", fontsize = 20)
+ax1.set_title(r"\textbf{LO ERBL evolution from $\mu_0=1$ GeV}", fontsize = 20)
 
-ax1.set_ylabel(r"$xH_u^{(-)}(x,\mu)$", fontsize = 18)
+ax1.set_ylabel(r"$xF_{4}(x,\mu)$", fontsize = 18)
 ax1.set_xlim([0.01, 1])
 ax1.set_xscale("log")
 ax1.set_ylim([-1.2, 1.2])
