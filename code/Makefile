@@ -1,6 +1,5 @@
 CXX = clang++
-
-CXXFLAGS += -O3 -fPIC -std=c++11
+CXXFLAGS += -O3 -fPIC -std=c++17
 
 # LHAPDF
 LHAPDFINCS = $(shell lhapdf-config --cppflags)
@@ -21,7 +20,7 @@ LDFLAGS  += $(LHAPDFINCS) $(APFELPPINCS) $(BOOSTINCS)
 CLIBS += $(LHAPDFLIBS) $(APFELPPLIBS) $(BOOSTLIBS)
 
 install : all
-all : Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer
+all : Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator
 
 Convolutions: Convolutions.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
@@ -41,6 +40,12 @@ GPDEvolutionPion: GPDEvolutionPion.o
 GPDEvolutionDer: GPDEvolutionDer.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
+GPDEvolutionDterm: GPDEvolutionDterm.o 
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
+
+GPDEvolutionOperator: GPDEvolutionOperator.o 
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
+
 .SUFFIXES : .cc .o .f .c
 
 .cxx.o:	 
@@ -50,4 +55,4 @@ GPDEvolutionDer: GPDEvolutionDer.o
 	$(F77)  -c $< 
 
 clean:
-	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer *~
+	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator *~
