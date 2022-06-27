@@ -30,24 +30,24 @@ int main()
   const apfel::Grid g{{{100, 1e-7, 3}, {200, 1e-1, 3}, {100, 9e-1, 3}}};
 
   const apfel::Pgpd0ns pns{xi};
-  const apfel::Distribution dfns = apfel::Operator{g, pns, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
-  //const apfel::Distribution dfns = apfel::Operator{g, pns, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
+  const apfel::Distribution dfns = apfel::Operator{g, pns, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
+  //const apfel::Distribution dfns = apfel::Operator{g, pns, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
 
   const apfel::Pgpd0qq pqq{xi};
-  const apfel::Distribution dfqq = apfel::Operator{g, pqq, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
-  //const apfel::Distribution dfqq = apfel::Operator{g, pqq, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
+  const apfel::Distribution dfqq = apfel::Operator{g, pqq, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
+  //const apfel::Distribution dfqq = apfel::Operator{g, pqq, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
 
   const apfel::Pgpd0gq pgq{xi};
-  const apfel::Distribution dfgq = apfel::Operator{g, pgq, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
-  //const apfel::Distribution dfgq = apfel::Operator{g, pgq, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
+  const apfel::Distribution dfgq = apfel::Operator{g, pgq, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
+  //const apfel::Distribution dfgq = apfel::Operator{g, pgq, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
 
   const apfel::Pgpd0qg pqg{3, xi};
-  const apfel::Distribution dfqg = apfel::Operator{g, pqg, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
-  //const apfel::Distribution dfqg = apfel::Operator{g, pqg, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
+  const apfel::Distribution dfqg = apfel::Operator{g, pqg, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
+  //const apfel::Distribution dfqg = apfel::Operator{g, pqg, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
 
   const apfel::Pgpd0gg pgg{3, xi};
-  const apfel::Distribution dfgg = apfel::Operator{g, pgg, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
-  //const apfel::Distribution dfgg = apfel::Operator{g, pgg, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
+  const apfel::Distribution dfgg = apfel::Operator{g, pgg, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, fy} );
+  //const apfel::Distribution dfgg = apfel::Operator{g, pgg, 1e-5, true} * ( [] (double const& y) -> double { return y; } * apfel::Distribution{g, GhostUp, xi} );
 
   // DGLAP kernels for comparison
   const apfel::P0ns pnsf{};
