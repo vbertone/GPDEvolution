@@ -36,7 +36,7 @@ int main()
   const apfel::Grid g{{apfel::SubGrid{100, 1e-7, 3}, apfel::SubGrid{200, 1e-1, 3}, apfel::SubGrid{100, 9e-1, 3}}};
 
   // Construct the PDF evolution objects
-  const auto EvolvedPDFs  = BuildDglap(InitializeDglapObjectsQCD(g, Thresholds), InPDFs, mu0, pto, as);
+  const auto EvolvedPDFs  = BuildDglap(InitializeDglapObjectsQCDtrans(g, Thresholds), InPDFs, mu0, pto, as);
 
   // Tabulate PDFs
   const apfel::TabulateObject<apfel::Set<apfel::Distribution>> TabulatedPDFs{*EvolvedPDFs,  30, 1, 100, 3};
@@ -45,7 +45,7 @@ int main()
   const std::vector<double> xiv{0, 0.02, 0.05, 0.11, 0.2, 0.35, 0.5, 0.7, 0.9, 1};
   std::vector<apfel::TabulateObject<apfel::Set<apfel::Distribution>>> TabulatedGPDs;
   for(double const& xi : xiv)
-    TabulatedGPDs.push_back(apfel::TabulateObject<apfel::Set<apfel::Distribution>> {*(BuildDglap(InitializeGpdObjects(g, Thresholds, xi), InPDFs, mu0, pto, as)), 30, 1, 100, 3});
+    TabulatedGPDs.push_back(apfel::TabulateObject<apfel::Set<apfel::Distribution>> {*(BuildDglap(InitializeGpdObjectsTrans(g, Thresholds, xi), InPDFs, mu0, pto, as)), 30, 1, 100, 3});
 
   // Print results
   const int nx = 1000;

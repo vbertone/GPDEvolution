@@ -20,12 +20,18 @@ LDFLAGS  += $(LHAPDFINCS) $(APFELPPINCS) $(BOOSTINCS)
 CLIBS += $(LHAPDFLIBS) $(APFELPPLIBS) $(BOOSTLIBS)
 
 install : all
-all : Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator
+all : Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator
 
 Convolutions: Convolutions.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
 GPDEvolution: GPDEvolution.o 
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
+
+GPDEvolutionPol: GPDEvolutionPol.o 
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
+
+GPDEvolutionTrans: GPDEvolutionTrans.o 
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
 GPDEvolutionGhost: GPDEvolutionGhost.o 
@@ -55,4 +61,4 @@ GPDEvolutionOperator: GPDEvolutionOperator.o
 	$(F77)  -c $< 
 
 clean:
-	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator *~
+	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator *~

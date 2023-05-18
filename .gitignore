@@ -32,6 +32,8 @@
 *.app
 code/Convolutions
 code/GPDEvolution
+code/GPDEvolutionPol
+code/GPDEvolutionTrans
 code/GPDEvolutionGhost
 code/GPDEvolutionTest
 code/GPDEvolutionDer
