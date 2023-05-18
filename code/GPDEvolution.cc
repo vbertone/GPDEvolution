@@ -82,27 +82,27 @@ int main()
   std::cout << "Up-valence PDF fraction: " << ( [] (double const& x) -> double { return 1 / x; } * ( DistPDFs.at(2) - DistPDFs.at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 1st moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 1st moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return 1 / x; } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 2st moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 2nd moment (xi = " << xiv[i] << ")   : "
 	      << ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 3rd moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 3rd moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return x; } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 4th moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 4th moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return x * x; } * ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 5rd moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 5rd moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return pow(x, 3); } * ( DistGPDs[i].at(2) - DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
   for (int i = 0; i < (int) xiv.size(); i++)
-    std::cout << "Up-valence 6th moment (xi = " << xiv[i] << ")   : "
+    std::cout << "Up 6th moment (xi = " << xiv[i] << ")   : "
 	      << ( [] (double const& x) -> double { return pow(x, 4); } * ( DistGPDs[i].at(2) + DistGPDs[i].at(-2) ) ).Integrate(1e-7, 1)<< std::endl;
   std::cout << "\n";
 
