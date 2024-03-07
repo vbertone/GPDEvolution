@@ -20,36 +20,39 @@ LDFLAGS  += $(LHAPDFINCS) $(APFELPPINCS) $(BOOSTINCS)
 CLIBS += $(LHAPDFLIBS) $(APFELPPLIBS) $(BOOSTLIBS)
 
 install : all
-all : Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator
+all : Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator testPsi
 
-Convolutions: Convolutions.o 
+Convolutions: Convolutions.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolution: GPDEvolution.o 
+GPDEvolution: GPDEvolution.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionPol: GPDEvolutionPol.o 
+GPDEvolutionPol: GPDEvolutionPol.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionTrans: GPDEvolutionTrans.o 
+GPDEvolutionTrans: GPDEvolutionTrans.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionGhost: GPDEvolutionGhost.o 
+GPDEvolutionGhost: GPDEvolutionGhost.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionERBL: GPDEvolutionERBL.o 
+GPDEvolutionERBL: GPDEvolutionERBL.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionPion: GPDEvolutionPion.o 
+GPDEvolutionPion: GPDEvolutionPion.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionDer: GPDEvolutionDer.o 
+GPDEvolutionDer: GPDEvolutionDer.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionDterm: GPDEvolutionDterm.o 
+GPDEvolutionDterm: GPDEvolutionDterm.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
-GPDEvolutionOperator: GPDEvolutionOperator.o 
+GPDEvolutionOperator: GPDEvolutionOperator.o
+	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
+
+testPsi: testPsi.o
 	$(CXX) $(LDFLAGS) -o $@ $< $(CLIBS)
 
 .SUFFIXES : .cc .o .f .c
@@ -61,4 +64,4 @@ GPDEvolutionOperator: GPDEvolutionOperator.o
 	$(F77)  -c $< 
 
 clean:
-	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator *~
+	rm -rf *.lo *.o *.la Convolutions GPDEvolution GPDEvolutionPol GPDEvolutionTrans GPDEvolutionGhost GPDEvolutionERBL GPDEvolutionPion GPDEvolutionDer GPDEvolutionDterm GPDEvolutionOperator testPsi *~

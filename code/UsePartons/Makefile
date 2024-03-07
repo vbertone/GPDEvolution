@@ -1,6 +1,6 @@
 CXX = clang++
 
-CXXFLAGS += -O3 -fPIC# -std=c++11
+CXXFLAGS += -O3 -fPIC# -std=c++17
 
 # LHAPDF
 LHAPDFINCS = $(shell lhapdf-config --cppflags)
